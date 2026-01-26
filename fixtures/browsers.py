@@ -1,3 +1,4 @@
+import os
 import pytest
 from playwright.sync_api import Page, BrowserContext, Browser
 
@@ -40,6 +41,8 @@ def chromium_page_with_state(chromium_browser, initialize_browser_state):
     yield page
     page.close()
     context.close()
+    if os.path.exists("browser-state.json"):
+        os.remove("browser-state.json")
 
 
 
